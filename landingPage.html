@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <style>
+        body{
+            margin: 0px;
+            font-size:20px;
+        }
+        nav{
+            display: flex;
+            justify-content: space-around;
+            gap:10px;
+            background-color: black;
+            color: white;
+        }
+        a{
+            text-decoration: none;
+            color:black;
+        }
+        button{
+            width: 100px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: red;
+            color:white;
+            cursor: pointer;
+        }
+        .a-tags{
+            display: flex;
+            gap: 20px;
+        }
+        a:hover{
+            background-color: aquamarine;
+            border-radius: 10px;
+            transition: 0.6s;
+        }
+        main{
+            background-image: url("./image.png");
+            background-size: cover;
+            height: 600px;
+        }
+        .main-content{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            height: 80vh;
+            justify-content: center;
+        }
+        .name-tag{
+            font-size: 30px;
+        }
+        .second-nav{
+            background-color: white;
+            color:black;
+            height: 100px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="healine">
+                <p><i class="fi fi-rr-phone-call"></i> (414)2345-908 &nbsp &nbsp &nbsp &nbsp &nbsp <i class="fi fi-rr-envelope"></i> yummy@blistrobliss</p>
+            </div>
+            <div>
+                <i class="fi fi-brands-twitter"></i>
+            </div>
+        </nav>
+        <nav class="second-nav">
+            <div class="name-tag">Blistro Bliss</div>
+            <div class="a-tags">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Menu</a>
+                <a href="#">Pages</a>
+                <a href="#">Contact</a>
+            </div>
+            <button>Book a table</button>
+        </nav>
+    </header>
+    <main>
+        <div class="main-content">
+            <h1>Best food for<br> your taste</h1>
+            <p>Discover deluctable cuisine and unforgettable moments<br>in our welcoming culinary heaven.</p>
+            <div>
+                <button>Book a table</button>
+                <button style="background-color: white;color: black;">Explore menu</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

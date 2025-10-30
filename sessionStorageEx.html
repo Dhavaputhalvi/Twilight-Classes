@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: rgb(87, 178, 238);
+        }
+       div{
+        display:flex;
+        flex-direction: column;
+        width: 300px;
+        height:400px;
+        row-gap: 40px;
+        text-align: center;
+        font-size: 20px;
+        justify-content: center;
+        justify-items: center;
+        min-height: 100vh;
+        margin-left:39%
+       }
+       input{
+        border: none;
+        border-bottom: 2px solid darkblue;
+        font-size: 20px;
+        background-color: rgb(87, 178, 238);
+       }
+       #button{
+        width: 100px;
+        border-radius: 20px;
+        background-color: red;
+        color: white;
+        height:40px;
+        align-self: center;
+       }
+    </style>
+</head>
+<body>
+    <div>
+    <h1>Login</h1>
+    <input type="text" id="email" placeholder="Enter your Email">
+    <input type="text" id="password" placeholder="Enter password">
+    <button onclick="login()" id="button">Submit</button>
+    </div>
+    <script>
+        function login(){
+        let email=document.getElementById("email").value;
+        let password=document.getElementById("password").value;
+        let loginDetails=JSON.parse(localStorage.getItem(email)) || []
+        console.log(loginDetails)
+        if(loginDetails.Email===email && loginDetails.Password===password){
+             let UserDetails={
+                Email:email,
+                Password:password
+            }
+
+            sessionStorage.setItem(name,JSON.stringify(UserDetails))
+            sessionStorage.getItem(UserDetails)
+            alert("Logged In Successfully!")
+            sessionStorage.getItem(UserDetails)
+        }
+        else{
+            alert("invalid Username or Password")
+        }
+        }
+    </script>
+</body>
+</html>

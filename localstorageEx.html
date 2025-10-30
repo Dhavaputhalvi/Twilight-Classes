@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <style>
+        body{
+            background: rgb(87, 178, 238);
+        }
+       div{
+        display:flex;
+        flex-direction: column;
+        width: 300px;
+        height:400px;
+        row-gap: 40px;
+        text-align: center;
+        font-size: 20px;
+        justify-content: center;
+        justify-items: center;
+        min-height: 100vh;
+        margin-left:39%
+       }
+       input{
+        border: none;
+        border-bottom: 2px solid darkblue;
+        font-size: 20px;
+        background-color: rgb(87, 178, 238);
+       }
+       #button{
+        width: 100px;
+        border-radius: 20px;
+        background-color: red;
+        color: white;
+        height:40px;
+        align-self: center;
+       }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Registration</h1>
+        <input type="text" id="name" placeholder="Enter name">
+        <input type="number" id="age" placeholder="Enter Age">
+        <input type="text" id="email" placeholder="Enter Email">
+        <input type="password" id="password" placeholder="Enter your password">
+        <input type="password" id="conpass" placeholder="Confirm Password">
+        <span>
+        Already a User? <a href="./sessionStorageEx.html">Login</a>
+        </span> 
+        <input type="button" id="button" value="Submit">
+    </div>
+    <script>
+        document.getElementById("button").addEventListener('click',local)
+        function local(){
+            let name=document.getElementById("name").value;
+            let age=document.getElementById("age").value;
+            let password=document.getElementById("password").value;
+            let conpassword=document.getElementById("conpass").value;
+            let email=document.getElementById("email").value;
+            let details=JSON.parse(localStorage.getItem(email)) || []
+            console.log(details)
+            if(password===conpassword){
+                if((details.Email==email)){
+                    alert("email already exists");
+                }
+                else{
+                let UserDetails={
+                Name:name,
+                Age:age,
+                Email:email,
+                Password:password
+                }
+
+                localStorage.setItem(email,JSON.stringify(UserDetails))
+                localStorage.getItem(UserDetails)
+                alert("Registered Successfully!")
+                setTimeout(location.reload(),1000)
+                }
+                }
+            else{
+                alert("Enter correct password!")
+            } 
+         }
+    </script>
+</body>
+</html>
