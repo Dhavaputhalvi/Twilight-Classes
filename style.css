@@ -1,0 +1,35 @@
+     div{
+        margin-left:33%;
+        margin-top:17%;
+        background-color: white;
+        width:350px;
+        height:450px;
+        align-items: center;
+        padding: 30px;
+        border: 5px solid darkblue;
+        border-radius: 20px;
+      }
+      body{
+         background-color: blue;
+         font-size:20px;
+      }
+      input{
+        border: none;
+        border-bottom: 2px solid black;
+      }
+      #btn{
+        width:200px;
+        height:30px;
+        border-radius: 5px;
+        background-color: blue;
+        color:white;
+      }
+      span{
+        text-indent: 60px;
+      }
+      h1{
+        text-decoration:underline ;
+        text-decoration-color: blue;
+       text-align:left ;
+      }
+      
