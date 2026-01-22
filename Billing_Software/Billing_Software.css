@@ -1,0 +1,60 @@
+.full-con{
+            display: flex;
+            margin: 100px;
+            flex-direction: column;
+            width: 900px;
+            background-color: white;
+        }
+        h1{
+            text-align: center;
+        }
+        .main-con{
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            gap:50px;
+        }
+        .left-container{
+            display: flex;
+            flex-direction: column;
+            gap:20px;
+            width: 500px;
+            padding: 20px;
+            box-shadow: 2px 2px 2px 2px grey;
+        }
+        .right-container{
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 20px;
+            width: 300px;
+        }
+        input{
+            width: 200px;
+            height: 30px;
+        }
+        table{
+            border: 1px solid black;
+        }
+        tr{
+            text-align: center;
+        }
+        button{
+            background-color: blue;
+            color: white;
+        }
+        .add-product{
+            display: grid;
+            grid-template-columns: auto auto;
+            gap:15px;
+        }
+        .cost-con{
+            display: flex;
+            float: right;
+            flex-direction: column;
+        }
+        .left-table , .right-table{
+            width: 100%;
+        }
+        #found_qty{
+            width: 30px;
+        }

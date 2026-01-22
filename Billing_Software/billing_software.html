@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="./Billing_Software.css">
+</head>
+<body>
+    <div class="full-con">
+        <div>
+        <h1>Billing software</h1>
+        </div>
+        <div class="main-con">
+            <div class="left-container">
+                <div class="add-product">
+                    <b>Add Product</b><br>
+                    <form id="Input-Form">
+                        <input type="text" placeholder="Product Name" id="product-name">
+                        <input type="number" placeholder="Price" id="price">
+                        <input type="number" placeholder="Available Qty" id="available">
+                        <button onclick="add_Product()">Add</button>
+                    </form>
+                </div>
+                <div>
+                    <b>Search product</b><br>
+                    <input type="text" placeholder="Type Product Name..." onkeyup="search()" id="search-product">
+                </div>
+                <div>
+                    <table class="left-table">
+                       <thead>
+                         <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Add</th>
+                            <th>Del</th>
+                        </tr>
+                       </thead>
+                       <tbody id="found-product"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="right-container">
+                <b>Bill</b><br>
+                <table class="right-table">
+                    <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th>Qty</th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody id="bill_details"></tbody>
+                </table>
+                <div class="cost-con">
+                    <p>Subtotal:₹ <span id="subTotal">0</span></p>
+                    <p>GST(18%):₹ <span id="GST">0</span></p>
+                    <b>Total:₹ <span id="total">0</span></b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./Billing_Software.js"></script>
+</body>
+</html>
