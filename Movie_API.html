@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            background-color: rgb(9, 2, 35);
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color:white;
+        }
+        .main-cont{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            width: 300px;
+            height: max-content;
+            border-radius: 20px;
+            gap:10px;
+            background-color: rgb(20, 11, 60);
+        }
+        input{
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        button{
+            background-color: rgb(255, 132, 0);
+            border-radius: 10px;
+            width: 80px;
+            height: 37px;
+            font-size: larger;
+            
+        }
+        .top-cont{
+            display: flex;
+            gap:10px;
+        }
+        img{
+            width: 250px;
+            height: 300px;
+        }
+        .inner-cont{
+            font-size: larger;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-cont">
+        <h1>Movie Search</h1>
+        <div class="top-cont">
+            <input type="text" id="movieName" placeholder="Enter Movie Name">
+            <button onclick="search()">Search</button>
+        </div>
+        <div class="inner-cont"></div>
+    </div>
+     
+
+    <script>
+        async function search(){
+            try{
+                let name=document.getElementById("movieName").value
+                let API_KEY=""
+                const rawdata=await fetch(`https://www.omdbapi.com/?t=${name}&apikey=${API_KEY}`)
+
+                if(!rawdata.ok)
+                    throw new Error(res.status)
+
+                const data=await rawdata.json()
+
+                document.querySelector(".inner-cont").innerHTML=`
+                    <img src="${data.Poster}" alt="${data.Title}">
+                    <h1>${data.Title}</h1>
+                    <p>Year : ${data.Year}</p>
+                    <p>IMDB Rating : ${data.imdbRating}</p>
+                `
+            }
+            catch(err){
+                console.log("Error : ",err)
+            }
+            
+        }
+    </script>
+</body>
+</html>
