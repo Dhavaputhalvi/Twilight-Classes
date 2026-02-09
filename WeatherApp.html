@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color:white;
+            font-size: larger;
+        }
+        .main-cont{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            gap:40px;
+            width: 500px;
+            height: 650px;
+            font-size: xx-large;
+           background: linear-gradient(90deg,rgba(149, 144, 245, 1) 0%, rgba(91, 91, 235, 1) 36%, rgba(0, 212, 255, 1) 100%);
+            border-radius: 39px;
+        }
+        .main-cont input{
+            width: 300px;
+            height: 30px;
+            outline: none;
+            border: none;
+            border-bottom: 2px solid white;
+            background:none;
+            font-size: 25px;
+            color:white;
+        }
+        input::placeholder{
+            color: white;
+            font-size: 20px;
+        }
+        button{
+            width: 120px;
+            height: 40px;
+            border-radius: 20px;
+            background: none;
+            color:white;
+            border: 2px solid white;
+            font-size: 20px;
+        }
+        button:hover{
+            transform: scale(1.1);
+            transition: 0.6s;
+            cursor: pointer;
+        }
+        button:active{
+           background-color: rgb(6, 242, 163);
+        }
+        .child-con{
+            display: flex;
+            flex-direction: column;
+            gap:30px;
+        }
+        .wind{
+            display: flex;
+            gap:50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-cont">
+        <h1>Weather App</h1>
+        <input type="text" placeholder="Enter City">
+        <button onclick="latlon()">Submit</button>
+        <div class="child-con">
+            <div class="temperature">
+                <div>Temperature <p class="temp"></p></div>
+            </div>
+            <div class="wind">
+                <div class="windSpeed">Wind Speed <p class="winds"></p></div>
+                <div class="windDirection">Wind Direction <p class="windd"></p></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let temp=document.querySelector(".temp")
+        let speed=document.querySelector(".winds")
+        let direction=document.querySelector(".windd")
+        function latlon(){
+                city=document.querySelector("input").value
+                fetch(`https://nominatim.openstreetmap.org/search?q=${city}&format=json&limit=1`)
+                .then(res => res.json())
+                .then(data =>{
+                        let latitude=data[0].lat
+                        let longitude=data[0].lon
+
+                        temperature(latitude,longitude)
+                })
+                .catch(err => alert("Enter Valid City"))
+
+
+               
+
+        }
+        function temperature(lat,lon){
+             fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+                .then(res1 => res1.json())
+                .then(  data1 =>{    
+                        temp.innerHTML=(data1.current_weather.weathercode+data1.current_weather_units.temperature);
+                        speed.innerHTML=(data1.current_weather.windspeed+data1.current_weather_units.windspeed);
+                        direction.innerHTML=(data1.current_weather.winddirection+data1.current_weather_units.winddirection);
+                })
+                .catch(err=> alert("No Match Found"))
+        }
+
+    </script>
+</body>
+</html>
