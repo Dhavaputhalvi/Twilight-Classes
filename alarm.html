@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .main-cont{
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            align-items: center;
+            justify-content: center;
+            row-gap: 10px;
+            height: 200px;
+            border: 2px solid black;
+            border-radius: 20px;
+            box-shadow: 2px 2px 30px 5px white;
+        }
+        input{
+            width: 100px;
+            height: 30px;
+        }
+        button{
+            width: 200px;
+            height: 30px;
+        }
+        div button{
+            background-color: rgb(35, 241, 20);
+        }
+        .darklight{
+            background-color: rgb(89, 173, 246);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-cont">
+        <div id="time"></div>
+        <input type="time" id="alarmtime">
+        <button onclick="setalarm()">Set Alarm</button><span id="settime"></span>
+        <audio id="myaudio"><source src="sample-6s.mp3" type="audio/mpeg"></source></audio>
+        <button onclick="toggle()" class="darklight">Dark/Light</button>
+    </div>
+
+
+    <script>
+        let hrs,min,sec,alarmhrs,alarmmin,alarmsec;
+        let color="black"
+        
+        
+        function timer(){
+            const date=new Date();
+            sec=date.getSeconds()
+            min=date.getMinutes()
+            hrs=date.getHours()
+
+            if(hrs<10)
+               hrs=("0")+hrs
+            if(min<10)
+                min=("0")+min
+            if(sec<10)
+                sec=("0")+sec
+            
+            document.getElementById("time").innerHTML=hrs+":"+min+":"+sec;
+        }
+        setInterval(timer,1000)
+        function setalarm(){
+            const fulltime=document.getElementById("alarmtime").value;
+
+            alarmhrs=Number(fulltime[0]+fulltime[1])
+            alarmmin=Number(fulltime[3]+fulltime[4])
+            alarmsec=0;
+
+            if(fulltime==""){
+                alert("please set alarm!")
+                return
+            }
+
+            let currentSeconds =(Number(hrs) * 3600) +(Number(min) * 60) + Number(sec);
+
+            let alarmSeconds = (alarmhrs * 3600) + (alarmmin * 60);
+
+            let diff = alarmSeconds - currentSeconds;
+            if (diff < 0) diff += 24 * 3600; // next day alarm
+
+            ringhrs = Math.floor(diff / 3600);
+            ringmin = Math.floor((diff % 3600) / 60);
+            ringsec = diff % 60;
+
+
+            // if(ringhrs<0)
+            //     ringhrs=ringhrs+60
+            // if(ringmin<0)
+            //     ringmin=ringmin+60
+
+            // if(ringhrs<10)
+            //     ringhrs="0"+ringhrs
+            // if(ringmin<10)
+            //     ringmin="0"+ringmin
+            // if(ringsec<10)
+            //     ringsec="0"+ringsec
+
+            document.getElementById("settime").innerHTML="Alarm will ring at "+ringhrs+":"+ringmin+":"+ringsec;
+            timedown(ringhrs,ringmin,ringsec)
+        }
+        let coundown;
+        function timedown(hr,min,sec){
+            hr=Number(hr)
+            min=Number(min)
+            sec=Number(sec)
+
+            clearInterval(coundown)
+            coundown=setInterval(()=>{
+                if(sec===0){
+                    if(min===0){
+                        if(hr===0){
+                            document.getElementById("settime").innerHTML="⏰Alarm is ringing!"
+                            document.getElementById("myaudio").play();
+                            clearInterval(coundown)
+                            return
+                        }
+                        hr--
+                        min=59
+                        sec=59
+                    }
+                    min--
+                    sec=59
+                }
+                else{
+                    sec--
+                }
+
+                document.getElementById("settime").innerHTML="Alarm will ring at "+(String(hr).padStart(2,'0'))+ ":" + String(min).padStart(2, '0') + ":" + String(sec).padStart(2, '0');
+            
+            },1000)
+            
+        }
+        
+
+        function toggle(){
+            bckcolor=localStorage.getItem('background-color',color)
+            if(bckcolor==="black"){
+                color="white"
+            }
+            else{
+                color="black"
+            }
+            localStorage.setItem('background-color',color)
+            document.querySelector("body").style.backgroundColor=bckcolor;
+        }
+    </script>
+</body>
+</html>
