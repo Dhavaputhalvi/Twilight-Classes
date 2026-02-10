@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+            background-color: greenyellow;
+            width: 100%;
+            padding: 30px;
+        }
+       @media (min-width:1000px) and (max-width:1600px){
+            .main-cont{
+                display: grid;
+                grid-template-columns: auto auto auto auto ;
+                gap: 10px;
+                padding: 50px;
+            }
+       }
+        @media (min-width:700px) and (max-width:999px){
+            .main-cont{
+                display: grid;
+                grid-template-columns: auto auto auto;
+                gap: 10px;
+                padding: 50px;
+             }
+       }
+       @media (min-width:401px) and (max-width:699px){
+            .main-cont{
+                display: grid;
+                grid-template-columns: auto auto;
+                gap: 10px;
+                padding: 50px;
+             }
+       }
+       @media (min-width:100px) and (max-width:400px){
+            .main-cont{
+                display: grid;
+                grid-template-columns: auto;
+                gap: 10px;
+                padding: 50px;
+             }
+       }
+        .inner-cont{
+            background-color: black;
+            width: 250px;
+            border-radius: 20px;
+            height: 400px;
+            color: white;
+            text-align: center;
+        }        
+        .inner-cont p{
+            color: greenyellow;
+        }
+        .inner-cont button{
+            background-color: blue;
+            color: white;
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+        }
+        button:hover{
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Shopping App</h1>
+    <div class="main-cont">
+
+    </div>
+
+
+    <script>
+        fetch('https://dummyjson.com/products')
+        .then(response => response.json())
+        .then(data => {
+            let container=document.querySelector(".main-cont")
+            data.products.forEach(product => {
+                container.innerHTML+=`
+                    <div class="inner-cont">
+                            <img src="${product.thumbnail}" width="200px" height="200px">
+                            <h2>${product.title}</h2>
+                            <p>Rs.${product.price}</p>
+                            <button>Add To Cart</button>
+                    </div> 
+            `
+            });
+        })
+        .catch(err => console.log(err))
+    </script>
+</body>
+</html>
